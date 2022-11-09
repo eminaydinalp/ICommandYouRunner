@@ -1,21 +1,17 @@
 using System;
-using _Game.Scripts.Abstracts.Controller;
+using _Game.Scripts.Abstracts.Affect;
 using _Game.Scripts.Abstracts.Movement;
 using _Game.Scripts.Concretes.Movement;
+using _Game.Scripts.Concretes.Spawner;
 using Lean.Touch;
 using UnityEngine;
 
 namespace _Game.Scripts.Concretes.Controllers
 {
-    public class PlayerController : MonoBehaviour, IEntityController
+    public class PlayerController : VerticalMovementBase
     {
-        private IMover _verticalMovement;
         private HorizontalMovement _horizontalMovement;
-
-        [Header("Vertical Movement Information \n")] 
-        [SerializeField] private float moveDirection;
-        [SerializeField] private float verticalMoveSpeed;
-
+        
         [Header("Horizontal Movement Information \n")] 
         [SerializeField] private Transform localMoverTarget;
         [SerializeField] private Transform localMover;
@@ -24,10 +20,10 @@ namespace _Game.Scripts.Concretes.Controllers
         [SerializeField] private float horizontalMoveSpeed;
 
         private BoxCollider _collider;
-        
-        private void Awake()
+
+        protected override void Awake()
         {
-            _verticalMovement = new VerticalMovement(this);
+            base.Awake();
             _horizontalMovement =
                 new HorizontalMovement(localMover, localMoverTarget, xPositionClamp, horizontalMoveSpeed);
         }
@@ -42,9 +38,11 @@ namespace _Game.Scripts.Concretes.Controllers
             _horizontalMovement.FollowLocalMoverTarget();
         }
 
-        private void FixedUpdate()
+        private void OnTriggerEnter(Collider other)
         {
-            _verticalMovement.Move(moveDirection, verticalMoveSpeed);
+            var affectable = other.GetComponent<IAffectable>();
+
+            affectable?.DoProcess();
         }
     }
 }
