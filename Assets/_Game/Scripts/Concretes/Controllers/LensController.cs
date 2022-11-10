@@ -1,5 +1,6 @@
 using System;
 using _Game.Scripts.Abstracts.Affect;
+using _Game.Scripts.Concretes.Managers;
 using _Game.Scripts.Concretes.Spawner;
 using TMPro;
 using UnityEngine;
@@ -32,7 +33,9 @@ namespace _Game.Scripts.Concretes.Controllers
 
         public void DoProcess()
         {
-            BallSpawner.Instance.MakeStickMan(BallSpawner.Instance.numberOfBalls + randomNumber);
+            Debug.Log("LEns");
+            EventManager.OnTriggerLens?.Invoke(randomNumber);
+            //FriendBallSpawner.Instance.MakeStickMan(FriendBallSpawner.Instance.numberOfBalls + randomNumber);
         }
     }
 }
