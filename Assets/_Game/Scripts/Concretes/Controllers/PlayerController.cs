@@ -1,6 +1,7 @@
 using System;
 using _Game.Scripts.Abstracts.Affect;
 using _Game.Scripts.Abstracts.Movement;
+using _Game.Scripts.Concretes.Managers;
 using _Game.Scripts.Concretes.Movement;
 using _Game.Scripts.Concretes.Spawner;
 using Lean.Touch;
@@ -18,6 +19,7 @@ namespace _Game.Scripts.Concretes.Controllers
 
         [SerializeField] private float xPositionClamp;
         [SerializeField] private float horizontalMoveSpeed;
+        [SerializeField] private float horizontalLerpSpeed;
 
         private BoxCollider _collider;
 
@@ -25,9 +27,21 @@ namespace _Game.Scripts.Concretes.Controllers
         {
             base.Awake();
             _horizontalMovement =
-                new HorizontalMovement(localMover, localMoverTarget, xPositionClamp, horizontalMoveSpeed);
+                new HorizontalMovement(localMover, localMoverTarget, xPositionClamp, horizontalMoveSpeed, horizontalLerpSpeed);
         }
-        
+
+        private void OnEnable()
+        {
+            EventManager.OnStartMelt += ZeroVerticalMove;
+            EventManager.OnFinishMelt += DefaultVerticalMove;
+        }
+
+        private void OnDisable()
+        {
+            EventManager.OnStartMelt -= ZeroVerticalMove;
+            EventManager.OnFinishMelt -= DefaultVerticalMove;
+        }
+
         private void Start()
         {
             LeanTouch.OnFingerUpdate +=_horizontalMovement.SwerveLean;
@@ -43,6 +57,16 @@ namespace _Game.Scripts.Concretes.Controllers
             var affectable = other.GetComponent<IAffectable>();
 
             affectable?.DoProcess();
+        }
+
+        private void ZeroVerticalMove()
+        {
+            verticalMoveSpeed = minVerticalMoveSpeed;
+        }
+        
+        private void DefaultVerticalMove()
+        {
+            verticalMoveSpeed = defaultVerticalMoveSpeed;
         }
     }
 }

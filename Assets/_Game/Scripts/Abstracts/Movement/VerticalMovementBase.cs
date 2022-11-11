@@ -10,7 +10,9 @@ namespace _Game.Scripts.Abstracts.Movement
         
         [Header("Vertical Movement Information \n")] 
         [SerializeField] private float moveDirection;
-        [SerializeField] private float verticalMoveSpeed;
+        public float verticalMoveSpeed;
+        public float defaultVerticalMoveSpeed;
+        public float minVerticalMoveSpeed;
         protected virtual void Awake()
         {
             _verticalMover = new VerticalMovement(this);

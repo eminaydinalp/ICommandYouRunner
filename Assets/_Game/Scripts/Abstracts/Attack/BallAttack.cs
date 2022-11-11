@@ -4,16 +4,27 @@ using UnityEngine;
 
 namespace _Game.Scripts.Abstracts.Attack
 {
-    public class BallAttack : MonoBehaviour
+    public abstract class BallAttack : MonoBehaviour
     {
         public bool isAttack;
         public BallSpawner enemyBallSpawner;
         public BallSpawner selfBallSpawner;
 
 
-        private void Update()
+        protected virtual void Update()
         {
             Attack();
+            //Attack2();
+        }
+
+        private void Attack2()
+        {
+            if (isAttack && enemyBallSpawner.activeBalls.Count <= 0)
+            {
+                selfBallSpawner.FormatStickMan();
+                isAttack = false;
+                enemyBallSpawner.gameObject.SetActive(false);
+            }
         }
 
         private void Attack()
@@ -22,23 +33,28 @@ namespace _Game.Scripts.Abstracts.Attack
             {
                 var enemyDirection = enemyBallSpawner.transform.position - transform.position;
 
-                for (int i = 0; i < transform.childCount; i++)
+                for (int i = 0; i < selfBallSpawner.activeBalls.Count; i++)
                 {
-                    transform.GetChild(i).rotation = 
-                        Quaternion.Slerp(transform.GetChild(i).rotation,Quaternion.LookRotation(enemyDirection,Vector3.up), Time.deltaTime * 3f);
-                
+                    selfBallSpawner.activeBalls[i].transform.rotation =
+                        Quaternion.Slerp(selfBallSpawner.activeBalls[i].transform.rotation,
+                            Quaternion.LookRotation(enemyDirection, Vector3.up), Time.deltaTime * 3f);
+
 
                     if (enemyBallSpawner.activeBalls.Count > 0)
                     {
-                        var distance = enemyBallSpawner.activeBalls[0].transform.position - transform.GetChild(i).position;
+                        var distance = enemyBallSpawner.activeBalls[0].transform.position -
+                                       selfBallSpawner.activeBalls[i].transform.position;
 
-                        if (distance.magnitude < 1.5f)
-                        {
-                            transform.GetChild(i).position = Vector3.Lerp(transform.GetChild(i).position,
-                                enemyBallSpawner.activeBalls[0].transform.position,Time.deltaTime * 2f);
-                        } 
+                        selfBallSpawner.activeBalls[i].transform.position = Vector3.Lerp(
+                            selfBallSpawner.activeBalls[i].transform.position,
+                            enemyBallSpawner.activeBalls[0].transform.position, Time.deltaTime * 2f);
                     }
-              
+                    else
+                    {
+                        selfBallSpawner.FormatStickMan();
+                        isAttack = false;
+                        enemyBallSpawner.gameObject.SetActive(false);
+                    }
                 }
             }
         }

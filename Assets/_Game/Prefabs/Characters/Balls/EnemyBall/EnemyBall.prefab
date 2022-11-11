@@ -15,6 +15,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyBall
       objectReference: {fileID: 0}
+    - target: {fileID: 3095254008819953676, guid: cd1a0922405c3b6429eff2cf9b8cb08e, type: 3}
+      propertyPath: m_TagString
+      value: EnemyBall
+      objectReference: {fileID: 0}
     - target: {fileID: 3797297260914106601, guid: cd1a0922405c3b6429eff2cf9b8cb08e, type: 3}
       propertyPath: m_RootOrder
       value: 0

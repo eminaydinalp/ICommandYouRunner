@@ -11,13 +11,15 @@ namespace _Game.Scripts.Concretes.Movement
 
         private readonly float _clamXPosition;
         private readonly float _speed;
+        private readonly float _lerpSpeed;
 
-        public HorizontalMovement(Transform localMover, Transform localMoverTarget, float clamXPosition, float speed)
+        public HorizontalMovement(Transform localMover, Transform localMoverTarget, float clamXPosition, float speed, float lerpSpeed)
         {
             _localMover = localMover;
             _localMoverTarget = localMoverTarget;
             _clamXPosition = clamXPosition;
             _speed = speed;
+            _lerpSpeed = lerpSpeed;
         }
         
         public void SwerveLean(LeanFinger finger)
@@ -59,7 +61,7 @@ namespace _Game.Scripts.Concretes.Movement
         public void FollowLocalMoverTarget()
         {
             Vector3 nextPos = new Vector3(_localMoverTarget.localPosition.x, _localMover.localPosition.y, _localMover.localPosition.z); ;
-            _localMover.localPosition = Vector3.Lerp(_localMover.localPosition, nextPos, _speed * Time.deltaTime);
+            _localMover.localPosition = Vector3.Lerp(_localMover.localPosition, nextPos, _lerpSpeed * Time.deltaTime);
         }
     }
 }

@@ -13,9 +13,9 @@ namespace _Game.Scripts.Abstracts.Spawner
         
         [Range(0f,1f)] [SerializeField] private float distanceFactor, radius;
 
-        public readonly List<GameObject> activeBalls = new();
+        public List<GameObject> activeBalls = new();
 
-        private const float SpawnTime = 0.5f;
+        private const float SpawnTime = 1f;
         private const float SpawnObjectYPos = 0;
         
         protected virtual void Start()
@@ -38,7 +38,7 @@ namespace _Game.Scripts.Abstracts.Spawner
             FormatStickMan();
         }
         
-        private void FormatStickMan()
+        public void FormatStickMan()
         {
             for (var i = 0; i < activeBalls.Count; i++)
             {
@@ -49,6 +49,11 @@ namespace _Game.Scripts.Abstracts.Spawner
 
                 activeBalls[i].transform.DOLocalMove(newPos, SpawnTime).SetEase(Ease.OutBack);
             }
+        }
+
+        public void SetNumberOfBalls()
+        {
+            numberOfBalls = activeBalls.Count;
         }
     }
 }

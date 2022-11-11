@@ -1,4 +1,5 @@
 using _Game.Scripts.Abstracts.Movement;
+using _Game.Scripts.Concretes.Attack;
 using _Game.Scripts.Concretes.Spawner;
 using UnityEngine;
 
@@ -6,19 +7,20 @@ namespace _Game.Scripts.Concretes.Controllers
 {
     public class EnemyBallGroupController : VerticalMovementBase
     {
-        [SerializeField] private EnemyBallSpawner _enemyBallSpawner;
+        public EnemyBallSpawner enemyBallSpawner;
+        public EnemyBallAttack enemyBallAttack;
         
         private void OnValidate()
         {
-            if (_enemyBallSpawner == null)
+            if (enemyBallSpawner == null)
             {
-                _enemyBallSpawner = GetComponent<EnemyBallSpawner>();
+                enemyBallSpawner = GetComponent<EnemyBallSpawner>();
             }
         }
 
         private void Start()
         {
-            StartCoroutine(_enemyBallSpawner.CreateEnemyBalls());
+            StartCoroutine(enemyBallSpawner.CreateEnemyBalls());
         }
     }
 }
