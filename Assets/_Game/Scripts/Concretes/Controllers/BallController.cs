@@ -6,6 +6,8 @@ namespace _Game.Scripts.Concretes.Controllers
 {
     public class BallController : MonoBehaviour
     {
+        public float scale;
+        public float increaseAmount;
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("EnemyBall"))
@@ -21,6 +23,14 @@ namespace _Game.Scripts.Concretes.Controllers
                 other.gameObject.SetActive(false);
                 gameObject.SetActive(false);
             }
+        }
+        
+
+        public void IncreaseScale()
+        {
+            scale += increaseAmount;
+            transform.localScale += Vector3.one * scale;
+            transform.position += Vector3.up * scale * 0.5f;
         }
     }
 }

@@ -17,7 +17,7 @@ namespace _Game.Scripts.Concretes.Spawner
             
             yield return new WaitForSeconds(0.01f);
             
-            MakeStickMan(ballCount);
+            CreateBall(ballCount);
         }
     }
 }

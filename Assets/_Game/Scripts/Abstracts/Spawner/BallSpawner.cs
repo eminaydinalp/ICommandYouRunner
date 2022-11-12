@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using _Game.Scripts.Concretes.Utilities;
 using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace _Game.Scripts.Abstracts.Spawner
 {
-    public abstract class BallSpawner : MonoBehaviour
+    public abstract class BallSpawner : MonoBehaviour 
     {
         public string spawnObjectType;
         
@@ -23,22 +24,22 @@ namespace _Game.Scripts.Abstracts.Spawner
             numberOfBalls = activeBalls.Count;
         }
 
-        public void MakeStickMan(int number)
+        public void CreateBall(int number)
         {
-            Debug.Log("Spawner");
             number += numberOfBalls;
+            
             for (var i = numberOfBalls; i < number; i++)
             {
-                GameObject ball = ObjectPooler.Instance.SpawnFromPool(spawnObjectType, transform.position, Quaternion.identity);
+                var ball = ObjectPooler.Instance.SpawnFromPool(spawnObjectType, transform.position, Quaternion.identity);
                 ball.transform.SetParent(transform);
                 activeBalls.Add(ball);
             }
 
-            numberOfBalls = activeBalls.Count;
-            FormatStickMan();
+            SetNumberOfBalls();
+            FormatBallGroup();
         }
         
-        public void FormatStickMan()
+        public void FormatBallGroup()
         {
             for (var i = 0; i < activeBalls.Count; i++)
             {
@@ -47,7 +48,7 @@ namespace _Game.Scripts.Abstracts.Spawner
             
                 var newPos = new Vector3(x,SpawnObjectYPos,z);
 
-                activeBalls[i].transform.DOLocalMove(newPos, SpawnTime).SetEase(Ease.OutBack);
+                activeBalls[i].GameObject().transform.DOLocalMove(newPos, SpawnTime).SetEase(Ease.OutBack);
             }
         }
 

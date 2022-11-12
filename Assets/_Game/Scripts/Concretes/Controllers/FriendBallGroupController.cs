@@ -25,14 +25,18 @@ namespace _Game.Scripts.Concretes.Controllers
 
         private void OnEnable()
         {
-            EventManager.OnTriggerLens += _friendBallSpawner.MakeStickMan;
+            EventManager.OnTriggerLensIncrease += _friendBallSpawner.CreateBall;
             EventManager.OnFinishMelt += DefaultVerticalMove;
+            EventManager.OnTriggerLensDecrease += _friendBallSpawner.DecreaseBall;
+            EventManager.OnTriggerCollectable += _friendBallSpawner.FindSmallestBallScale;
         }
 
         private void OnDisable()
         {
-            EventManager.OnTriggerLens -= _friendBallSpawner.MakeStickMan;
+            EventManager.OnTriggerLensIncrease -= _friendBallSpawner.CreateBall;
             EventManager.OnFinishMelt -= DefaultVerticalMove;
+            EventManager.OnTriggerLensDecrease -= _friendBallSpawner.DecreaseBall;
+            EventManager.OnTriggerCollectable -= _friendBallSpawner.FindSmallestBallScale;
         }
 
         private void OnTriggerEnter(Collider other)

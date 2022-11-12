@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using _Game.Scripts.Abstracts.Spawner;
 using UnityEngine;
 
@@ -21,7 +22,7 @@ namespace _Game.Scripts.Abstracts.Attack
         {
             if (isAttack && enemyBallSpawner.activeBalls.Count <= 0)
             {
-                selfBallSpawner.FormatStickMan();
+                selfBallSpawner.FormatBallGroup();
                 isAttack = false;
                 enemyBallSpawner.gameObject.SetActive(false);
             }
@@ -47,16 +48,17 @@ namespace _Game.Scripts.Abstracts.Attack
 
                         selfBallSpawner.activeBalls[i].transform.position = Vector3.Lerp(
                             selfBallSpawner.activeBalls[i].transform.position,
-                            enemyBallSpawner.activeBalls[0].transform.position, Time.deltaTime * 2f);
+                            enemyBallSpawner.activeBalls[0].transform.position, Time.deltaTime * 1f);
                     }
                     else
                     {
-                        selfBallSpawner.FormatStickMan();
+                        selfBallSpawner.FormatBallGroup();
                         isAttack = false;
                         enemyBallSpawner.gameObject.SetActive(false);
                     }
                 }
             }
         }
+        
     }
 }

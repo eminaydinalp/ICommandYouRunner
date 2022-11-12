@@ -11,6 +11,8 @@ namespace _Game.Scripts.Concretes.Attack
         protected override void Update()
         {
             base.Update();
+            
+            if(selfBallSpawner == null || enemyBallSpawner == null) return;
 
             if (selfBallSpawner.activeBalls.Count <= 0)
             {

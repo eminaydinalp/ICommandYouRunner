@@ -51,10 +51,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnObjectType: FriendBall
   numberOfBalls: 0
-  distanceFactor: 0.4
+  distanceFactor: 0.5
   radius: 1
   activeBalls: []
-  firstFrienfBall: {fileID: 3180121620116353016}
+  firstFriendBall: {fileID: 3180121620116353016}
 --- !u!114 &5942484324887946917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,6 +124,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5942484324887946914}
     m_Modifications:
+    - target: {fileID: 2414736177081898506, guid: 3df899d62094b93418dc9e9fea0e9519, type: 3}
+      propertyPath: increaseAmount
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4426106252739329325, guid: 3df899d62094b93418dc9e9fea0e9519, type: 3}
       propertyPath: m_IsTrigger
       value: 1
