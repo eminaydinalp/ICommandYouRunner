@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using _Game.Scripts.Concretes.Managers;
+using TMPro;
 using UnityEngine;
 
 namespace _Game.Scripts.Abstracts.Lenses
@@ -8,6 +9,7 @@ namespace _Game.Scripts.Abstracts.Lenses
         [SerializeField] protected TextMeshPro gateNo;
         [SerializeField] private int minCount;
         [SerializeField] private int maxCount;
+        [SerializeField] private int soundIndex;
         public int randomNumber;
 
         protected virtual void Start()
@@ -25,6 +27,9 @@ namespace _Game.Scripts.Abstracts.Lenses
         }
 
 
-        public abstract void DoProcess();
+        public virtual void DoProcess()
+        {
+            SoundManager.Instance.PlaySound(soundIndex);   
+        }
     }
 }

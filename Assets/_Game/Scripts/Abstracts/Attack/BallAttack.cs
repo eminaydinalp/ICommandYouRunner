@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using _Game.Scripts.Abstracts.Spawner;
 using UnityEngine;
 
@@ -15,17 +14,6 @@ namespace _Game.Scripts.Abstracts.Attack
         protected virtual void Update()
         {
             Attack();
-            //Attack2();
-        }
-
-        private void Attack2()
-        {
-            if (isAttack && enemyBallSpawner.activeBalls.Count <= 0)
-            {
-                selfBallSpawner.FormatBallGroup();
-                isAttack = false;
-                enemyBallSpawner.gameObject.SetActive(false);
-            }
         }
 
         private void Attack()
@@ -43,9 +31,6 @@ namespace _Game.Scripts.Abstracts.Attack
 
                     if (enemyBallSpawner.activeBalls.Count > 0)
                     {
-                        var distance = enemyBallSpawner.activeBalls[0].transform.position -
-                                       selfBallSpawner.activeBalls[i].transform.position;
-
                         selfBallSpawner.activeBalls[i].transform.position = Vector3.Lerp(
                             selfBallSpawner.activeBalls[i].transform.position,
                             enemyBallSpawner.activeBalls[0].transform.position, Time.deltaTime * 1f);
@@ -53,11 +38,17 @@ namespace _Game.Scripts.Abstracts.Attack
                     else
                     {
                         selfBallSpawner.FormatBallGroup();
-                        isAttack = false;
-                        enemyBallSpawner.gameObject.SetActive(false);
+                        StartCoroutine(StopAttack());
                     }
                 }
             }
+        }
+
+        private IEnumerator StopAttack()
+        {
+            yield return new WaitForSeconds(0.1f);
+            isAttack = false;
+            //enemyBallSpawner.gameObject.SetActive(false);
         }
         
     }

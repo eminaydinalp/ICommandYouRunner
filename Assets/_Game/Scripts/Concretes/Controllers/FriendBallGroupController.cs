@@ -1,4 +1,4 @@
-using _Game.Scripts.Abstracts.Movement;
+using _Game.Scripts.Abstracts.Controller;
 using _Game.Scripts.Concretes.Attack;
 using _Game.Scripts.Concretes.Managers;
 using _Game.Scripts.Concretes.Spawner;
@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace _Game.Scripts.Concretes.Controllers
 {
-    public class FriendBallGroupController : VerticalMovementBase
+    public class FriendBallGroupController : CharacterBaseController
     {
         [SerializeField] private FriendBallSpawner _friendBallSpawner;
         [SerializeField] private FriendBallAttack _friendBallAttack;
@@ -29,6 +29,9 @@ namespace _Game.Scripts.Concretes.Controllers
             EventManager.OnFinishMelt += DefaultVerticalMove;
             EventManager.OnTriggerLensDecrease += _friendBallSpawner.DecreaseBall;
             EventManager.OnTriggerCollectable += _friendBallSpawner.FindSmallestBallScale;
+            EventManager.OnTriggerFinishArea += () => verticalMoveSpeed = minVerticalMoveSpeed;
+            EventManager.OnFinishAttackAnimation += () => verticalMoveSpeed = defaultVerticalMoveSpeed;
+
         }
 
         private void OnDisable()
@@ -37,6 +40,8 @@ namespace _Game.Scripts.Concretes.Controllers
             EventManager.OnFinishMelt -= DefaultVerticalMove;
             EventManager.OnTriggerLensDecrease -= _friendBallSpawner.DecreaseBall;
             EventManager.OnTriggerCollectable -= _friendBallSpawner.FindSmallestBallScale;
+            EventManager.OnTriggerFinishArea -= () => verticalMoveSpeed = minVerticalMoveSpeed;
+            EventManager.OnFinishAttackAnimation -= () => verticalMoveSpeed = defaultVerticalMoveSpeed;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -59,12 +64,13 @@ namespace _Game.Scripts.Concretes.Controllers
                 _friendBallAttack.isAttack = true;
                 enemyBallGroupController.enemyBallAttack.isAttack = true;
 
-                //StartCoroutine(_friendBallAttack.UpdateTheEnemyAndPlayerStickMansNumbers());
             }
         }
 
         private void DefaultVerticalMove()
         {
+            if(GameManager.Instance.isFinishAttackArea) return;
+
             verticalMoveSpeed = defaultVerticalMoveSpeed;
         }
     }

@@ -16,7 +16,7 @@ namespace _Game.Scripts.Abstracts.Spawner
 
         public List<GameObject> activeBalls = new();
 
-        private const float SpawnTime = 1f;
+        private const float SpawnTime = 1.5f;
         private const float SpawnObjectYPos = 0;
         
         protected virtual void Start()

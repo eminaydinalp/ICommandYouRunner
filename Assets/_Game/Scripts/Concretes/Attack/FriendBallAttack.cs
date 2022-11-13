@@ -1,5 +1,4 @@
 ﻿using _Game.Scripts.Abstracts.Attack;
-using _Game.Scripts.Concretes.Controllers;
 using _Game.Scripts.Concretes.Managers;
 using UnityEngine;
 
@@ -12,16 +11,20 @@ namespace _Game.Scripts.Concretes.Attack
         {
             base.Update();
             
-            if(selfBallSpawner == null || enemyBallSpawner == null) return;
+            if(selfBallSpawner == null || enemyBallSpawner == null || !isAttack) return;
 
             if (selfBallSpawner.activeBalls.Count <= 0)
             {
-                Debug.Log("Fail");
+                EventManager.OnFail?.Invoke();
             }
 
             if (enemyBallSpawner.activeBalls.Count <= 0)
             {
-                Debug.Log("Win");
+
+                if (GameManager.Instance.isFinishAttackArea)
+                {
+                    EventManager.OnWin?.Invoke();
+                }
                 
                 EventManager.OnFinishMelt?.Invoke();
             }

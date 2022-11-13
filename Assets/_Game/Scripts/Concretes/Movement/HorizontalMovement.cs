@@ -1,4 +1,5 @@
 using _Game.Scripts.Abstracts.Movement;
+using _Game.Scripts.Concretes.Managers;
 using Lean.Touch;
 using UnityEngine;
 
@@ -24,6 +25,8 @@ namespace _Game.Scripts.Concretes.Movement
         
         public void SwerveLean(LeanFinger finger)
         {
+            if(GameManager.Instance.isFinish) return;
+            
             Vector2 direction = finger.ScaledDelta;
 
             if (Input.GetMouseButton(0))

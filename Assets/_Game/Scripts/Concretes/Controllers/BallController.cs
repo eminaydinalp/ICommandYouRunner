@@ -1,11 +1,14 @@
 using System;
 using _Game.Scripts.Abstracts.Spawner;
+using _Game.Scripts.Concretes.Managers;
+using _Game.Scripts.Concretes.Utilities;
 using UnityEngine;
 
 namespace _Game.Scripts.Concretes.Controllers
 {
     public class BallController : MonoBehaviour
     {
+        [SerializeField] private GameObject ballParticle;
         public float scale;
         public float increaseAmount;
         private void OnTriggerEnter(Collider other)
@@ -20,6 +23,10 @@ namespace _Game.Scripts.Concretes.Controllers
                 selfBallSpawner.activeBalls.Remove(gameObject);
                 selfBallSpawner.SetNumberOfBalls();
 
+                Instantiate(ballParticle, transform.position, Quaternion.identity);
+                
+                SoundManager.Instance.PlaySound(0);
+                
                 other.gameObject.SetActive(false);
                 gameObject.SetActive(false);
             }

@@ -20,6 +20,7 @@ namespace _Game.Scripts.Concretes.Lenses
 
         public override void DoProcess()
         {
+            base.DoProcess();
             EventManager.OnTriggerLensIncrease?.Invoke(randomNumber);
         }
 

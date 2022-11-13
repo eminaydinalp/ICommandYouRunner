@@ -10,5 +10,9 @@ namespace _Game.Scripts.Concretes.Managers
         public static Action OnStartMelt;
         public static Action OnFinishMelt;
         public static Action OnTriggerCollectable;
+        public static Action OnFail;
+        public static Action OnWin;
+        public static Action OnTriggerFinishArea;
+        public static Action OnFinishAttackAnimation;
     }
 }

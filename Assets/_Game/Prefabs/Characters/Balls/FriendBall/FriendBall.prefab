@@ -86,5 +86,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3cee96ee271b9142930ba3c1dd35700, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ballParticle: {fileID: 4156606808961236682, guid: bfba7a8e465f7434a9f2ef0375e6e61f, type: 3}
   scale: 0
   increaseAmount: 0.5

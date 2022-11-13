@@ -1,6 +1,6 @@
-using System;
 using _Game.Scripts.Abstracts.Spawner;
 using _Game.Scripts.Concretes.Controllers;
+using _Game.Scripts.Concretes.Managers;
 using UnityEngine;
 
 
@@ -27,7 +27,7 @@ namespace _Game.Scripts.Concretes.Spawner
                 for (int i = 0; i < activeBallCount; i++)
                 {
                     activeBalls[i].gameObject.SetActive(false);
-                    Debug.Log("Fail");
+                    EventManager.OnFail?.Invoke();
                 }
             }
             else

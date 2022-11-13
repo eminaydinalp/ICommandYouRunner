@@ -9,6 +9,7 @@ namespace _Game.Scripts.Concretes.Controllers
         public void DoProcess()
         {
             EventManager.OnTriggerCollectable?.Invoke();
+            SoundManager.Instance.PlaySound(4);
             gameObject.SetActive(false);
         }
     }
