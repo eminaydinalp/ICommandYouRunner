@@ -17,7 +17,7 @@ namespace _Game.Scripts.Concretes.Managers
         {
             EventManager.OnFail += () => isFinish = true;
             EventManager.OnWin += () => isFinish = true;
-            EventManager.OnWin += () => confetti.SetActive(true);
+            EventManager.OnWin += PlayConfetti;
             EventManager.OnTriggerFinishArea += () => isFinishAttackArea = true;
         }
 
@@ -25,7 +25,7 @@ namespace _Game.Scripts.Concretes.Managers
         {
             EventManager.OnFail -= () => isFinish = true;
             EventManager.OnWin -= () => isFinish = true;
-            EventManager.OnWin -= () => confetti.SetActive(true);
+            EventManager.OnWin -= PlayConfetti;
             EventManager.OnTriggerFinishArea -= () => isFinishAttackArea = true;
         }
 
@@ -37,6 +37,11 @@ namespace _Game.Scripts.Concretes.Managers
         public void LoadScene()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        private void PlayConfetti()
+        {
+            confetti.SetActive(true);
         }
     }
 }

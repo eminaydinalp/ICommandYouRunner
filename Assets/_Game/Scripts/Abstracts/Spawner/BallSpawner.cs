@@ -3,6 +3,7 @@ using _Game.Scripts.Concretes.Utilities;
 using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace _Game.Scripts.Abstracts.Spawner
 {
@@ -14,7 +15,7 @@ namespace _Game.Scripts.Abstracts.Spawner
         
         [Range(0f,1f)] [SerializeField] private float distanceFactor, radius;
 
-        public List<GameObject> activeBalls = new();
+        public List<NavMeshAgent> activeBalls = new();
 
         private const float SpawnTime = 1.5f;
         private const float SpawnObjectYPos = 0;
@@ -32,7 +33,7 @@ namespace _Game.Scripts.Abstracts.Spawner
             {
                 var ball = ObjectPooler.Instance.SpawnFromPool(spawnObjectType, transform.position, Quaternion.identity);
                 ball.transform.SetParent(transform);
-                activeBalls.Add(ball);
+                activeBalls.Add(ball.GetComponent<NavMeshAgent>());
             }
 
             SetNumberOfBalls();

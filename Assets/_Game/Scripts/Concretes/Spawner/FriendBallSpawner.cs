@@ -2,13 +2,14 @@ using _Game.Scripts.Abstracts.Spawner;
 using _Game.Scripts.Concretes.Controllers;
 using _Game.Scripts.Concretes.Managers;
 using UnityEngine;
+using UnityEngine.AI;
 
 
 namespace _Game.Scripts.Concretes.Spawner
 {
     public class FriendBallSpawner : BallSpawner
     {
-        [SerializeField] private GameObject firstFriendBall;
+        [SerializeField] private NavMeshAgent firstFriendBall;
 
         private BallController _ballController;
    

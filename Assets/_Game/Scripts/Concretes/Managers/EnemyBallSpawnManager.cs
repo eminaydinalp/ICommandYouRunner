@@ -1,4 +1,4 @@
-using System;
+using System.Collections;
 using _Game.Scripts.Abstracts.Managers;
 using _Game.Scripts.Concretes.Utilities;
 using UnityEngine;
@@ -11,7 +11,7 @@ namespace _Game.Scripts.Concretes.Managers
         private bool spawnFinish;
         private void Start()
         {
-            Spawn();
+            StartCoroutine(FirstSpawn());
         }
 
         private void OnEnable()
@@ -30,6 +30,12 @@ namespace _Game.Scripts.Concretes.Managers
             ObjectPooler.Instance.SpawnFromPool(spawnObjectType, 
                 new Vector3(transform.position.x, SpawnYPosition, transform.position.z), 
                 Quaternion.identity);
+        }
+
+        IEnumerator FirstSpawn()
+        {
+            yield return new WaitForSeconds(0.1f);
+            Spawn();
         }
     }
 }

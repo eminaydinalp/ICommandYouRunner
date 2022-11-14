@@ -3,6 +3,7 @@ using _Game.Scripts.Abstracts.Spawner;
 using _Game.Scripts.Concretes.Managers;
 using _Game.Scripts.Concretes.Utilities;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace _Game.Scripts.Concretes.Controllers
 {
@@ -16,11 +17,11 @@ namespace _Game.Scripts.Concretes.Controllers
             if (other.CompareTag("EnemyBall"))
             {
                 var otherBallSpawner = other.transform.parent.GetComponent<BallSpawner>();
-                otherBallSpawner.activeBalls.Remove(other.gameObject);
+                otherBallSpawner.activeBalls.Remove(other.GetComponent<NavMeshAgent>());
                 otherBallSpawner.SetNumberOfBalls();
                 
                 var selfBallSpawner = transform.parent.GetComponent<BallSpawner>();
-                selfBallSpawner.activeBalls.Remove(gameObject);
+                selfBallSpawner.activeBalls.Remove(gameObject.GetComponent<NavMeshAgent>());
                 selfBallSpawner.SetNumberOfBalls();
 
                 Instantiate(ballParticle, transform.position, Quaternion.identity);

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace _Game.Scripts.Concretes.Attack
 {
-    public class EnemyBallAttack : BallAttack
+    public class EnemyBallAttack : BallAttackWithNavmesh
     {
         
     }

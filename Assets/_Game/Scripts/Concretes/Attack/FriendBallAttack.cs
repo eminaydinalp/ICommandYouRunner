@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace _Game.Scripts.Concretes.Attack
 {
-    public class FriendBallAttack : BallAttack
+    public class FriendBallAttack : BallAttackWithNavmesh
     {
 
         protected override void Update()

@@ -76,7 +76,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gateNo: {fileID: 6067697924435738791}
   minCount: 10
-  maxCount: 25
+  maxCount: 30
   soundIndex: 1
   randomNumber: 0
 --- !u!114 &6067697924435738791 stripped
