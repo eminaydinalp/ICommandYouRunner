@@ -8,7 +8,6 @@ namespace _Game.Scripts.Concretes.Finish
     {
         public void DoProcess()
         {
-            Debug.Log("VAR");
             EventManager.OnTriggerFinishArea?.Invoke();
         }
     }

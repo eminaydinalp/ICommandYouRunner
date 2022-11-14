@@ -1,3 +1,4 @@
+using System.Collections;
 using _Game.Scripts.Abstracts.Spawner;
 using _Game.Scripts.Concretes.Controllers;
 using _Game.Scripts.Concretes.Managers;
@@ -10,6 +11,7 @@ namespace _Game.Scripts.Concretes.Spawner
     public class FriendBallSpawner : BallSpawner
     {
         [SerializeField] private NavMeshAgent firstFriendBall;
+        [SerializeField] private Transform navPos;
 
         private BallController _ballController;
    
@@ -60,5 +62,7 @@ namespace _Game.Scripts.Concretes.Spawner
             
             _ballController.IncreaseScale();
         }
+        
+        
     }
 }

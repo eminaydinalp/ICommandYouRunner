@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using _Game.Scripts.Concretes.Managers;
 using _Game.Scripts.Concretes.Utilities;
 using DG.Tweening;
 using Unity.VisualScripting;
@@ -13,7 +14,7 @@ namespace _Game.Scripts.Abstracts.Spawner
         
         public int numberOfBalls;
         
-        [Range(0f,1f)] [SerializeField] private float distanceFactor, radius;
+        [Range(0f,1f)] [SerializeField] protected float distanceFactor, radius;
 
         public List<NavMeshAgent> activeBalls = new();
 

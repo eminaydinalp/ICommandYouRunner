@@ -40,7 +40,7 @@ namespace _Game.Scripts.Concretes.Movement
 
                 if (touch.phase is TouchPhase.Moved or TouchPhase.Stationary)
                 {
-                    Move(direction.x / 2f, _speed);
+                    Move(direction.x , _speed);
                 }
             }
         }

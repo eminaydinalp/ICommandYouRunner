@@ -1,4 +1,5 @@
 ﻿using _Game.Scripts.Abstracts.Affect;
+using _Game.Scripts.Concrates.Utilities;
 using _Game.Scripts.Concretes.Managers;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ namespace _Game.Scripts.Concretes.Controllers
         public void DoProcess()
         {
             EventManager.OnTriggerCollectable?.Invoke();
-            SoundManager.Instance.PlaySound(4);
+            SoundManager.Instance.PlaySound(Consts.TriggerCollectableSoundIndex);
             gameObject.SetActive(false);
         }
     }

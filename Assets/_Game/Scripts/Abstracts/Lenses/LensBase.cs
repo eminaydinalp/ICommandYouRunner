@@ -29,7 +29,7 @@ namespace _Game.Scripts.Abstracts.Lenses
 
         public virtual void DoProcess()
         {
-            SoundManager.Instance.PlaySound(soundIndex);   
+            SoundManager.Instance.PlaySound(soundIndex);
         }
     }
 }

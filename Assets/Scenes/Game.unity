@@ -2783,7 +2783,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 422f0b8379ca430b9e5ba6fb2ac3871a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  confetti: {fileID: 131170862}
 --- !u!4 &1864194065 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1766653468242942546, guid: cfcb4e53c381cdd43b84663e6e206342, type: 3}
@@ -3340,6 +3339,10 @@ PrefabInstance:
     - target: {fileID: 5942484324887946914, guid: f239288ab473bcb429fdc13826ebf915, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5942484324887946915, guid: f239288ab473bcb429fdc13826ebf915, type: 3}
+      propertyPath: navPos
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5942484324887946915, guid: f239288ab473bcb429fdc13826ebf915, type: 3}
       propertyPath: firstFriendBall

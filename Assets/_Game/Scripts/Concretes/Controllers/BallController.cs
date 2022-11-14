@@ -1,5 +1,6 @@
 using System;
 using _Game.Scripts.Abstracts.Spawner;
+using _Game.Scripts.Concrates.Utilities;
 using _Game.Scripts.Concretes.Managers;
 using _Game.Scripts.Concretes.Utilities;
 using UnityEngine;
@@ -26,7 +27,7 @@ namespace _Game.Scripts.Concretes.Controllers
 
                 Instantiate(ballParticle, transform.position, Quaternion.identity);
                 
-                SoundManager.Instance.PlaySound(0);
+                SoundManager.Instance.PlaySound(Consts.TriggerBallSoundIndex);
                 
                 other.gameObject.SetActive(false);
                 gameObject.SetActive(false);
